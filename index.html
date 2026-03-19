@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Monitoramento - Cruzamento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <div class="header">
+            <h1>SISTEMA DE MONITORAMENTO DE TRÂNSITO</h1>
+            <div class="status-indicator">
+                <span class="dot"></span>
+                <span class="status-text">SISTEMA ATIVO</span>
+            </div>
+        </div>
+
+        <!-- Área principal -->
+        <div class="main-area">
+            <!-- Monitor principal -->
+            <div class="monitor">
+                <div class="monitor-header">
+                    <div class="camera-label">
+                        <span>🚁</span>
+                        <span>DRONE - VISÃO AÉREA</span>
+                    </div>
+                    <div class="time-display" id="currentTime">00:00:00</div>
+                </div>
+                <div class="monitor-screen" id="monitorScreen">
+                    <canvas id="trafficCanvas" width="800" height="600"></canvas>
+                </div>
+            </div>
+
+            <!-- Painel lateral -->
+            <div class="side-panel">
+                <div class="panel-header">
+                    <h2>RELATÓRIO DE OCORRÊNCIAS</h2>
+                    <div class="panel-subtitle">REGISTRO EM TEMPO REAL</div>
+                </div>
+                <div class="report-log" id="reportLog">
+                    <div class="log-entry system">
+                        <span class="log-time">[00:00:00]</span>
+                        <span class="log-message">Sistema inicializado</span>
+                    </div>
+                </div>
+                <div class="victim-status" id="victimStatus">
+                    <h3>STATUS DA VÍTIMA:</h3>
+                    <div class="severity-row">
+                        <span id="severityBadge" class="severity-badge" style="display:none">-</span>
+                    </div>
+                    <div class="status-box" id="victimStatusText">-</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões de controle -->
+        <div class="control-buttons">
+            <button class="control-btn restart-btn" id="restartBtn">
+                <span class="btn-icon">↻</span>
+                <span class="btn-text">REINICIAR SIMULAÇÃO</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Elementos de áudio -->
+    <audio id="crashSound" preload="auto">
+        <source src="crash.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="sireneSound" loop preload="auto">
+        <source src="sirene.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
