@@ -119,8 +119,8 @@ function initAudios() {
         }
         
         if (sireneAudio) {
-            sireneAudio.volume = 0.1;
-            sireneAudio.load(); // Forçar carregamento
+            sireneAudio.volume = 0.6;
+            sireneAudio.load();
             console.log('🎵 Áudio de sirene carregado:', sireneAudio);
         }
         
@@ -159,11 +159,17 @@ function playCrashSound() {
 function playSirene() {
     if (sireneAudio) {
         sireneAudio.loop = true;
+        sireneAudio.currentTime = 0;
         let playPromise = sireneAudio.play();
         
         if (playPromise !== undefined) {
             playPromise.catch(error => {
                 console.error('❌ Erro ao tocar sirene:', error);
+                // Fallback: toca na próxima interação do usuário
+                document.addEventListener('click', function playOnClick() {
+                    sireneAudio.play();
+                    document.removeEventListener('click', playOnClick);
+                }, { once: true });
             });
         }
     }
